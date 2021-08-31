@@ -1,0 +1,39 @@
+# spawn terminal
+ctrl + alt + t
+    alacritty
+
+# make sxhkd reload its config files
+alt + r
+    pkill -USR1 -x sxhkd
+
+# for dmenu
+alt + p
+    rofi -modi drun -show
+
+# quit/restart bspwm
+shift + alt + {q,r}
+    bspc {quit,wm -r}    
+
+ctrl + i; {1-9}
+    bspc desktop -f '^{1-9}'
+
+ctrl + shift + i; {1-9}
+    bspc node -d '^{1-9}'
+
+ctrl + i; {t,f,m}
+    bspc node -t {tiled,floating,fullscreen}
+
+# focus other desktop
+ctrl + i; apostrophe
+    bspc monitor -f prev
+
+ctrl + i; {h,j,k,l}
+    bspc node -f {west,south,north,east}
+
+# Expand a window
+ctrl + shift + i; {h,j,k,l}
+    bspc node -z {left -150 0,bottom 0 150,top 0 -150,right 150 0}
+
+# Kill window
+ctrl + shift + i; q
+    bspc node -c

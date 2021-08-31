@@ -1,0 +1,37 @@
+#! /bin/sh
+
+sxhkd &
+
+xrandr --output DP-2 --mode 1920x1080 --right-of DP-1
+
+bspc monitor DP-1 -d 1 2 3 4 5
+bspc monitor DP-2 -d 6 7 8 9 10
+
+bspc config border_width         0
+bspc config window_gap           10
+bspc config top_padding          10
+bspc config bottom_padding       30
+bscp config left_padding         30
+bscp config right_padding        10
+
+bspc config normal_border_color \#353844
+bspc config focused_border_color \#353844
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+# starting daemon in background
+sxhkd &
+dunst &
+compton &
+
+nitrogen --set-zoom-fill --head=1 ~/Pictures/solid-color-image.jpeg
+nitrogen --set-zoom-fill --head=0 ~/Pictures/solid-color-image.jpeg
+xrandr --output DP-2 --rotate left
